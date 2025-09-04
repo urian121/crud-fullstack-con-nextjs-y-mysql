@@ -5,6 +5,7 @@ import Navbar from '@/app/components/Navbar';
 import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
 import ConfirmModal from './components/ConfirmModal';
+import useToast from '@/app/hooks/useToast';
 
 export default function Home() {
   const [contacts, setContacts] = useState([]);
@@ -12,6 +13,7 @@ export default function Home() {
   const [contactoEditando, setContactoEditando] = useState(null);
   const [mostrarConfirmModal, setMostrarConfirmModal] = useState(false);
   const [contactoAEliminar, setContactoAEliminar] = useState(null);
+  const toast = useToast();
 
   // Cargar contactos desde la API
   const fetchContacts = async () => {
@@ -20,7 +22,7 @@ export default function Home() {
       const response = await axios.get('/api/contacts');
       setContacts(response.data.contacts || []);
     } catch (error) {
-      console.error('Error al cargar contactos:', error);
+      toast.error("Error al cargar contactos");
       setContacts([]);
     } finally {
       setLoading(false);
@@ -51,13 +53,13 @@ export default function Home() {
       try {
         const response = await axios.delete(`/api/contacts?id=${contactoAEliminar}`);
         if (response.data.success) {
+           toast.success("Contacto eliminado exitosamente");
           fetchContacts();
         } else {
-          alert('Error al eliminar el contacto: ' + response.data.message);
+          toast.error('Error al eliminar el contacto: ' + response.data.message);
         }
       } catch (error) {
         console.error('Error al eliminar contacto:', error);
-        alert('Error al eliminar el contacto. Por favor, intenta de nuevo.');
       }
     }
     cerrarModalEliminar();
@@ -78,14 +80,14 @@ export default function Home() {
     try {
       const response = await axios.put('/api/contacts', datosActualizados);
       if (response.data.success) {
+        toast.success('¡Contacto actualizado exitosamente!');
         fetchContacts();
         cerrarModal();
       } else {
-        alert('Error al actualizar el contacto: ' + response.data.message);
+        toast.error('Error al actualizar el contacto: ' + response.data.message);
       }
     } catch (error) {
       console.error('Error al actualizar contacto:', error);
-      alert('Error al actualizar el contacto. Por favor, intenta de nuevo.');
     }
   };
 

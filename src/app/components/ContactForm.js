@@ -1,6 +1,7 @@
 'use client';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import useToast from '@/app/hooks/useToast';
 
 export default function ContactForm({ onContactAdded }) {
   const { register, handleSubmit, formState: { errors }, watch, reset } = useForm({
@@ -9,22 +10,21 @@ export default function ContactForm({ onContactAdded }) {
       profession: '',
       gender: 'Masculino',
       age: 20,
-      speaksEnglish: false,
-      photo: null
+      speaksEnglish: false
     }
   });
+  const toast = useToast();
 
   const onSubmit = async (data) => {
     try {
       const response = await axios.post('/api/contacts', data);
-      console.log('Contacto guardado:', response.data);
+      toast.success('¡Contacto guardado exitosamente!');
       reset(); // Limpiar formulario
       if (onContactAdded) {
         onContactAdded(response.data.contact); // Notificar al componente padre
       }
     } catch (error) {
-      console.error('Error al guardar contacto:', error);
-      alert('Error al guardar el contacto. Por favor, intenta de nuevo.');
+      toast.error('Error al guardar contacto');
     }
   };
 
@@ -34,7 +34,7 @@ export default function ContactForm({ onContactAdded }) {
       <hr className="mb-4" />
 
       <div className="card-body">
-        <form onSubmit={handleSubmit(onSubmit)} method="POST" encType="multipart/form-data">
+        <form onSubmit={handleSubmit(onSubmit)} method="POST">
           <div className="mb-3">
             <label htmlFor="name" className="form-label text-muted small">Nombre</label>
             <input
@@ -119,18 +119,6 @@ export default function ContactForm({ onContactAdded }) {
               </label>
             </div>
             <small className="text-muted">{watch('speaksEnglish') ? 'Sí' : 'No'}</small>
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="photo" className="form-label text-muted small">Cambiar Foto del empleado</label>
-            <input
-              type="file"
-              className="form-control"
-              id="photo"
-              accept="image/*"
-              {...register('photo')}
-            />
-            <small className="text-muted">Seleccionar archivo | Ningún archivo seleccionado</small>
           </div>
 
           <button type="submit" className="btn btn-dark w-100 fw-bold">

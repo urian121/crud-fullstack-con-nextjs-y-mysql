@@ -1,36 +1,146 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📋 CRUD Contactos - Next.js & MySQL
 
-## Getting Started
+Una aplicación web moderna para gestión de contactos desarrollada con Next.js 14, MySQL y Bootstrap 5. Incluye funcionalidades completas de CRUD (Crear, Leer, Actualizar, Eliminar) con carga de imágenes y una interfaz elegante.
 
-First, run the development server:
+![demo](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/refs/heads/master/crud-fullstack-nextjs-mysql.gif)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Características
+
+- **CRUD Completo**: Crear, leer, actualizar y eliminar contactos
+- **Carga de Imágenes**: Subida y gestión de fotos de perfil
+- **Modales Elegantes**: Confirmación de eliminación y edición con animaciones suaves
+- **Interfaz Moderna**: Diseño responsive con Bootstrap 5 y Bootstrap Icons
+- **Validación de Formularios**: Validación client-side con React Hook Form
+- **API RESTful**: Endpoints optimizados con Next.js App Router
+- **Base de Datos MySQL**: Esquema robusto con timestamps automáticos
+
+## 🛠️ Tecnologías Utilizadas
+
+### Frontend
+- **Next.js 14** - Framework React con App Router
+- **React 18** - Biblioteca de interfaz de usuario
+- **React Hook Form** - Gestión de formularios y validación
+- **Bootstrap 5** - Framework CSS para diseño responsive
+- **Bootstrap Icons** - Iconografía moderna
+- **Axios** - Cliente HTTP para peticiones API
+
+### Backend
+- **Next.js API Routes** - Endpoints del servidor
+- **MySQL** - Base de datos relacional
+- **Node.js** - Entorno de ejecución
+
+## 📁 Estructura del Proyecto
+
+```
+crud-con-nextjs-y-mysql/
+├── src/
+│   └── app/
+│       ├── api/
+│       │   └── contacts/
+│       │       └── route.js          # API endpoints CRUD
+│       ├── components/
+│       │   ├── ContactForm.js        # Formulario de contactos
+│       │   ├── ContactList.js        # Lista de contactos
+│       │   ├── EditModal.js          # Modal de edición
+│       │   ├── ConfirmModal.js       # Modal de confirmación
+│       │   └── Navbar.js             # Barra de navegación
+│       ├── lib/
+│       │   └── db.js                 # Configuración de base de datos
+│       ├── styles/
+│       │   └── globals.css           # Estilos globales
+│       ├── layout.js                 # Layout principal
+│       └── page.js                   # Página principal
+├── public/
+│   └── uploads/                      # Carpeta para imágenes
+├── database_schema.sql               # Esquema de base de datos
+└── package.json                      # Dependencias del proyecto
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Instalación y Configuración
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Prerrequisitos
+- Node.js 18+ instalado
+- MySQL Server instalado y ejecutándose
+- Git (opcional)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Clonar el Repositorio
+```bash
+git clone <https://github.com/urian121/crud-fullstack-con-nextjs-y-mysql.git>
+cd crud-fullstack-con-nextjs-y-mysql
+```
 
-## Learn More
+### 2. Instalar Dependencias
+```bash
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Configurar Base de Datos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Crear la base de datos e importar el esquema
+```bash
+    database_schema.sql
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4. Ejecutar el Proyecto
+```bash
+npm run dev
+```
 
-## Deploy on Vercel
+La aplicación estará disponible en: `http://localhost:3000`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎯 Funcionalidades Principales
+
+### Gestión de Contactos
+- ✅ Agregar nuevos contactos con foto
+- ✅ Visualizar lista de contactos
+- ✅ Editar información existente
+- ✅ Eliminar contactos con confirmación
+- ✅ Carga y actualización de imágenes
+
+### Interfaz de Usuario
+- ✅ Diseño responsive para móviles y desktop
+- ✅ Modales con animaciones suaves
+- ✅ Validación de formularios en tiempo real
+- ✅ Feedback visual para acciones del usuario
+- ✅ Iconografía consistente
+
+## 🔧 Scripts Disponibles
+
+```bash
+# Desarrollo
+npm run dev
+
+# Construcción para producción
+npm run build
+
+# Iniciar en producción
+npm start
+
+# Linting
+npm run lint
+```
+
+## 📝 API Endpoints
+
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| GET | `/api/contacts` | Obtener todos los contactos |
+| POST | `/api/contacts` | Crear nuevo contacto |
+| PUT | `/api/contacts` | Actualizar contacto existente |
+| DELETE | `/api/contacts?id={id}` | Eliminar contacto |
+
+
+## 🙌 Cómo puedes apoyar 📢:
+
+✨ **Comparte este proyecto** con otros desarrolladores para que puedan beneficiarse 📢.
+
+☕ **Invítame un café o una cerveza 🍺**:
+   - [Paypal](https://www.paypal.me/iamdeveloper86) (`iamdeveloper86@gmail.com`).
+
+### ⚡ ¡No olvides SUSCRIBIRTE a la [Comunidad WebDeveloper](https://www.youtube.com/WebDeveloperUrianViera?sub_confirmation=1)!
+
+
+#### ⭐ **Déjanos una estrella en GitHub**:
+   - Dicen que trae buena suerte 🍀.
+**Gracias por tu apoyo 🤓.**
