@@ -4,10 +4,14 @@ import axios from 'axios';
 import Navbar from '@/app/components/Navbar';
 import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
+import ConfirmModal from './components/ConfirmModal';
 
 export default function Home() {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [contactoEditando, setContactoEditando] = useState(null);
+  const [mostrarConfirmModal, setMostrarConfirmModal] = useState(false);
+  const [contactoAEliminar, setContactoAEliminar] = useState(null);
 
   // Cargar contactos desde la API
   const fetchContacts = async () => {
@@ -32,6 +36,59 @@ export default function Home() {
     fetchContacts();
   };
 
+  const abrirModalEliminar = (id) => {
+    setContactoAEliminar(id);
+    setMostrarConfirmModal(true);
+  };
+
+  const cerrarModalEliminar = () => {
+    setMostrarConfirmModal(false);
+    setContactoAEliminar(null);
+  };
+
+  const confirmarEliminacion = async () => {
+    if (contactoAEliminar) {
+      try {
+        const response = await axios.delete(`/api/contacts?id=${contactoAEliminar}`);
+        if (response.data.success) {
+          fetchContacts();
+        } else {
+          alert('Error al eliminar el contacto: ' + response.data.message);
+        }
+      } catch (error) {
+        console.error('Error al eliminar contacto:', error);
+        alert('Error al eliminar el contacto. Por favor, intenta de nuevo.');
+      }
+    }
+    cerrarModalEliminar();
+  };
+
+  const abrirModalEditar = (contact) => {
+    setContactoEditando({
+      ...contact,
+      speaksEnglish: contact.english_level === 'Sí'
+    });
+  };
+
+  const cerrarModal = () => {
+    setContactoEditando(null);
+  };
+
+  const guardarEdicion = async (datosActualizados) => {
+    try {
+      const response = await axios.put('/api/contacts', datosActualizados);
+      if (response.data.success) {
+        fetchContacts();
+        cerrarModal();
+      } else {
+        alert('Error al actualizar el contacto: ' + response.data.message);
+      }
+    } catch (error) {
+      console.error('Error al actualizar contacto:', error);
+      alert('Error al actualizar el contacto. Por favor, intenta de nuevo.');
+    }
+  };
+
 
 
   return (
@@ -43,9 +100,25 @@ export default function Home() {
         <ContactForm onContactAdded={handleContactAdded} />
 
         {/* Lista de Contactos */}
-        <ContactList contacts={contacts} loading={loading} />
+        <ContactList 
+            contacts={contacts} 
+            loading={loading} 
+            eliminarContacto={abrirModalEliminar}
+            abrirModalEditar={abrirModalEditar}
+            contactoEditando={contactoEditando}
+            cerrarModal={cerrarModal}
+            guardarEdicion={guardarEdicion}
+          />
       </div>
     </div>
+    
+    <ConfirmModal 
+      mostrar={mostrarConfirmModal}
+      titulo="Confirmar Eliminación"
+      mensaje="¿Estás seguro de que deseas eliminar este contacto? Esta acción no se puede deshacer."
+      onConfirmar={confirmarEliminacion}
+      onCancelar={cerrarModalEliminar}
+    />
     </>
   );
 }

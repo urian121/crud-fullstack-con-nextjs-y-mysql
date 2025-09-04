@@ -1,8 +1,11 @@
 'use client';
+import EditModal from './EditModal';
 
-export default function ContactList({ contacts, loading }) {
-  return (
-    <div className="col-md-8">
+export default function ContactList({ contacts, loading, eliminarContacto, abrirModalEditar, contactoEditando, cerrarModal, guardarEdicion }) {
+
+   return (
+     <>
+     <div className="col-md-8">
       <h4 className="mb-0 text-dark fw-bold text-center fs-3 opacity-75 mb-4">Lista de Contactos ({contacts.length})</h4>
        <hr className="mb-4" />
        
@@ -44,7 +47,7 @@ export default function ContactList({ contacts, loading }) {
                     className="btn btn-danger btn-sm mt-2"
                     onClick={() => eliminarContacto(contact.id)}
                   >
-                    <i className="bi bi-trash3"></i> Borrar
+                    <i className="bi bi-trash3"></i> Eliminar
                   </button>
                 </div>
               </div>
@@ -54,5 +57,13 @@ export default function ContactList({ contacts, loading }) {
         )}
       </div>
     </div>
-  );
+
+    {/* Modal de Edición */}
+      <EditModal 
+        contactoEditando={contactoEditando}
+        cerrarModal={cerrarModal}
+        guardarEdicion={guardarEdicion}
+      />
+     </>
+   );
 }

@@ -34,7 +34,7 @@ export default function ContactForm({ onContactAdded }) {
       <hr className="mb-4" />
 
       <div className="card-body">
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} method="POST" encType="multipart/form-data">
           <div className="mb-3">
             <label htmlFor="name" className="form-label text-muted small">Nombre</label>
             <input
