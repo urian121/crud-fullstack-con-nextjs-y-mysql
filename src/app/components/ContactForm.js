@@ -20,10 +20,11 @@ export default function ContactForm({ onContactAdded }) {
       console.log('Contacto guardado:', response.data);
       reset(); // Limpiar formulario
       if (onContactAdded) {
-        onContactAdded(response.data); // Notificar al componente padre
+        onContactAdded(response.data.contact); // Notificar al componente padre
       }
     } catch (error) {
       console.error('Error al guardar contacto:', error);
+      alert('Error al guardar el contacto. Por favor, intenta de nuevo.');
     }
   };
 

@@ -1,63 +1,35 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import Navbar from '@/app/components/Navbar';
 import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
 
 export default function Home() {
-  const [contacts, setContacts] = useState([
-    {
-      id: 1,
-      name: 'nuevo',
-      profession: 'Ingeniero de software',
-      age: 22,
-      gender: 'Masculino',
-      photo: null
-    },
-    {
-      id: 2,
-      name: 'Luis Noel',
-      profession: 'Programador Senior',
-      age: 26,
-      gender: 'Masculino',
-      photo: null
-    },
-    {
-      id: 3,
-      name: 'Carlos',
-      profession: 'Programador Senior',
-      age: 25,
-      gender: 'Masculino',
-      photo: null
-    },
-    {
-      id: 4,
-      name: 'Nuevo Contacto',
-      profession: 'Programador Senior',
-      age: 29,
-      gender: 'Masculino',
-      photo: null
-    },
-    {
-      id: 5,
-      name: 'Urian Viera',
-      profession: 'Programador Senior',
-      age: 30,
-      gender: 'Masculino',
-      photo: null
-    },
-    {
-      id: 6,
-      name: 'Uriany',
-      profession: 'Programador Senior',
-      age: 44,
-      gender: 'Femenino',
-      photo: null
+  const [contacts, setContacts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Cargar contactos desde la API
+  const fetchContacts = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get('/api/contacts');
+      setContacts(response.data.contacts || []);
+    } catch (error) {
+      console.error('Error al cargar contactos:', error);
+      setContacts([]);
+    } finally {
+      setLoading(false);
     }
-  ]);
+  };
+
+  useEffect(() => {
+    fetchContacts();
+  }, []);
 
   const handleContactAdded = (newContact) => {
-    setContacts(prevContacts => [...prevContacts, newContact]);
+    // Recargar la lista completa desde la API
+    fetchContacts();
   };
 
 
@@ -71,7 +43,7 @@ export default function Home() {
         <ContactForm onContactAdded={handleContactAdded} />
 
         {/* Lista de Contactos */}
-        <ContactList contacts={contacts} />
+        <ContactList contacts={contacts} loading={loading} />
       </div>
     </div>
     </>
