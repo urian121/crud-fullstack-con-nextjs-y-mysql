@@ -56,28 +56,11 @@ export default function Home() {
     }
   ]);
 
-  const [formData, setFormData] = useState({
-    name: '',
-    profession: '',
-    gender: 'Masculino',
-    age: 39,
-    speaksEnglish: false,
-    photo: null
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
+  const handleContactAdded = (newContact) => {
+    setContacts(prevContacts => [...prevContacts, newContact]);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aquí iría la lógica para guardar el contacto
-    console.log('Guardando contacto:', formData);
-  };
+
 
   return (
     <>
@@ -85,11 +68,7 @@ export default function Home() {
     <div className="container py-4">
       <div className="row">
         {/* Formulario de Agregar Contacto */}
-        <ContactForm 
-          formData={formData}
-          handleInputChange={handleInputChange}
-          handleSubmit={handleSubmit}
-        />
+        <ContactForm onContactAdded={handleContactAdded} />
 
         {/* Lista de Contactos */}
         <ContactList contacts={contacts} />

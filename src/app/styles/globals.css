@@ -56,7 +56,15 @@ a {
   }
 }
 
-/* Solo estilos esenciales que Bootstrap no cubre */
+.btn-dark, .btn-warning{
+  background-color: #4b67e6 !important;
+  color: #fff !important;
+  border: 1px solid #4b67e6 !important;
+}
+
+.btn-dark:hover, .btn-warning:hover{
+  opacity: 0.9;
+}
 
 /* Scroll personalizado para la lista de contactos */
 .contacts-scroll::-webkit-scrollbar {
@@ -74,4 +82,11 @@ a {
 
 .contacts-scroll::-webkit-scrollbar-thumb:hover {
   background: #adb5bd;
+}
+.bg-body-tertiary {
+  background-color: rgb(204, 204, 204) !important;
+}
+
+.hover-bg-light:hover {
+  background-color: #f8f9fa;
 }

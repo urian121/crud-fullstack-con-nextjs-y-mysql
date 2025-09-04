@@ -6,7 +6,7 @@ export default function Navbar() {
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
           <Image src="/logo_nextjs.webp" alt="Next.js" width={100} height={50} />
-        <a className="navbar-brand fw-bold fs-4 opacity-75" href="#">Crud con Nextjs y MySQL</a>
+        <a className="navbar-brand fw-bold fs-2 opacity-75" href="#">Crud con Nextjs y MySQL</a>
       </div>
     </nav>
   )
