@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-09-2025 a las 00:42:22
+-- Tiempo de generación: 08-09-2025 a las 01:18:31
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -34,7 +34,6 @@ CREATE TABLE `contacts` (
   `gender` varchar(50) NOT NULL,
   `age` int(11) NOT NULL,
   `english_level` varchar(50) NOT NULL DEFAULT 'Básico',
-  `photo` varchar(250) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -43,15 +42,15 @@ CREATE TABLE `contacts` (
 -- Volcado de datos para la tabla `contacts`
 --
 
-INSERT INTO `contacts` (`id`, `name`, `profession`, `gender`, `age`, `english_level`, `photo`, `created_at`, `updated_at`) VALUES
-(1, 'Urian Viera', 'Desarrollador', 'Masculino', 28, 'Intermedio', NULL, '2025-09-04 00:52:33', '2025-09-04 00:52:33'),
-(2, 'María García', 'Diseñadora', 'Femenino', 25, 'Avanzado', NULL, '2025-09-04 00:52:33', '2025-09-04 00:52:33'),
-(3, 'Braudin Laya', 'Analista', 'Masculino', 32, 'No', NULL, '2025-09-04 00:52:33', '2025-09-04 03:28:43'),
-(6, 'Any', 'Analista de Sistemas', 'Femenino', 28, 'No', NULL, '2025-09-04 03:39:57', '2025-09-04 03:40:18'),
-(7, 'Luis', 'Diseñador UX/UI', 'Masculino', 29, 'Avanzado', NULL, '2025-09-04 03:40:10', '2025-09-04 03:40:10'),
-(12, 'Ana maria', 'Programador Senior', 'Femenino', 35, 'No', NULL, '2025-09-04 04:12:10', '2025-09-07 22:30:42'),
-(15, 'Albelardo Perez', 'Programador Senior', 'Masculino', 29, 'No', NULL, '2025-09-04 04:30:08', '2025-09-04 04:30:15'),
-(16, 'Jorge', 'Programador Senior', 'Masculino', 33, 'Sí', NULL, '2025-09-07 22:36:10', '2025-09-07 22:36:22');
+INSERT INTO `contacts` (`id`, `name`, `profession`, `gender`, `age`, `english_level`, `created_at`, `updated_at`) VALUES
+(1, 'Urian Viera', 'Desarrollador', 'Masculino', 28, 'Intermedio', '2025-09-04 00:52:33', '2025-09-04 00:52:33'),
+(2, 'María García', 'Diseñadora', 'Femenino', 25, 'Avanzado', '2025-09-04 00:52:33', '2025-09-04 00:52:33'),
+(3, 'Braudin Laya', 'Analista', 'Masculino', 32, 'No', '2025-09-04 00:52:33', '2025-09-04 03:28:43'),
+(6, 'Any', 'Analista de Sistemas', 'Femenino', 28, 'No', '2025-09-04 03:39:57', '2025-09-04 03:40:18'),
+(7, 'Luis', 'Diseñador UX/UI', 'Masculino', 29, 'Avanzado', '2025-09-04 03:40:10', '2025-09-04 03:40:10'),
+(12, 'Ana maria', 'Programador Senior', 'Femenino', 35, 'No', '2025-09-04 04:12:10', '2025-09-07 22:30:42'),
+(15, 'Albelardo Perez', 'Programador Senior', 'Masculino', 29, 'No', '2025-09-04 04:30:08', '2025-09-04 04:30:15'),
+(16, 'Jorge', 'Programador Senior', 'Masculino', 33, 'Sí', '2025-09-07 22:36:10', '2025-09-07 22:36:22');
 
 --
 -- Índices para tablas volcadas

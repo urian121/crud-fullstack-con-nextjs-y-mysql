@@ -7,7 +7,6 @@ Una aplicación web moderna para gestión de contactos desarrollada con Next.js,
 ## ✨ Características
 
 - **CRUD Completo**: Crear, leer, actualizar y eliminar contactos
-- **Carga de Imágenes**: Subida y gestión de fotos de perfil
 - **Modales Elegantes**: Confirmación de eliminación y edición con animaciones suaves
 - **Interfaz Moderna**: Diseño responsive con Bootstrap 5 y Bootstrap Icons
 - **Validación de Formularios**: Validación client-side con React Hook Form
@@ -29,32 +28,6 @@ Una aplicación web moderna para gestión de contactos desarrollada con Next.js,
 - **MySQL** - Base de datos relacional
 - **Node.js** - Entorno de ejecución
 
-## 📁 Estructura del Proyecto
-
-```
-crud-con-nextjs-y-mysql/
-├── src/
-│   └── app/
-│       ├── api/
-│       │   └── contacts/
-│       │       └── route.js          # API endpoints CRUD
-│       ├── components/
-│       │   ├── ContactForm.js        # Formulario de contactos
-│       │   ├── ContactList.js        # Lista de contactos
-│       │   ├── EditModal.js          # Modal de edición
-│       │   ├── ConfirmModal.js       # Modal de confirmación
-│       │   └── Navbar.js             # Barra de navegación
-│       ├── lib/
-│       │   └── db.js                 # Configuración de base de datos
-│       ├── styles/
-│       │   └── globals.css           # Estilos globales
-│       ├── layout.js                 # Layout principal
-│       └── page.js                   # Página principal
-├── public/
-│   └── uploads/                      # Carpeta para imágenes
-├── database_schema.sql               # Esquema de base de datos
-└── package.json                      # Dependencias del proyecto
-```
 
 ## 🚀 Instalación y Configuración
 
