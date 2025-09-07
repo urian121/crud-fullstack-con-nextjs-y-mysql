@@ -1,15 +1,16 @@
 'use client';
-import { useForm } from 'react-hook-form';
-import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form'; // Importar useForm de react-hook-form
+import { useEffect, useState } from 'react'; // Importar useEffect y useState de React
 
 // Componente para editar un contacto
 export default function EditModal({ contactoEditando, cerrarModal, guardarEdicion }) {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
-  const [mostrar, setMostrar] = useState(false);
+  const { register, handleSubmit, reset, formState: { errors } } = useForm(); // Inicializar el formulario
+  const [mostrar, setMostrar] = useState(false); // Estado para mostrar el modal
 
+  // Manejar el evento de submit del formulario
   useEffect(() => {
     if (contactoEditando) {
-      reset(contactoEditando);
+      reset(contactoEditando); // Resetear el formulario con los datos del contacto a editar
       // Pequeño delay para permitir que el modal se monte antes de mostrar la animación
       setTimeout(() => setMostrar(true), 10);
     } else {
@@ -17,10 +18,12 @@ export default function EditModal({ contactoEditando, cerrarModal, guardarEdicio
     }
   }, [contactoEditando, reset]);
 
+  // Manejar el evento de submit del formulario
   const onSubmit = (data) => {
     guardarEdicion({ ...data, id: contactoEditando.id });
   };
 
+  // Manejar el evento de cierre del modal
   const manejarCierre = () => {
     setMostrar(false);
     setTimeout(() => cerrarModal(), 150); // Esperar a que termine la animación

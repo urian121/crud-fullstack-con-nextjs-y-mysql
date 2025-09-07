@@ -1,10 +1,11 @@
-'use client';
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
-import useToast from '@/app/hooks/useToast';
+'use client'; // Indicar que este componente es un cliente
+import { useForm } from 'react-hook-form'; // Importar useForm de react-hook-form
+import axios from 'axios'; // Importar axios
+import useToast from '@/app/hooks/useToast'; // Importar useToast
 
 // Componente para agregar un nuevo contacto
 export default function ContactForm({ onContactAdded }) {
+  // Inicializar el formulario con valores por defecto
   const { register, handleSubmit, formState: { errors }, watch, reset } = useForm({
     defaultValues: {
       name: '',
@@ -16,6 +17,7 @@ export default function ContactForm({ onContactAdded }) {
   });
   const toast = useToast();
 
+  // Manejar el evento de submit del formulario
   const onSubmit = async (data) => {
     try {
       const response = await axios.post('/api/contacts', data);

@@ -1,5 +1,5 @@
-'use client';
-import { useEffect, useState } from 'react';
+'use client'; // Indicar que este componente es un cliente
+import { useEffect, useState } from 'react'; // Importar useEffect y useState de React
 
 // Componente para mostrar un modal de confirmación
 export default function ConfirmModal({ mostrar, titulo, mensaje, onConfirmar, onCancelar }) {

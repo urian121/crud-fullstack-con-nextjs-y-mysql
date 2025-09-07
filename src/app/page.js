@@ -8,46 +8,51 @@ import ConfirmModal from './components/ConfirmModal';
 import useToast from '@/app/hooks/useToast';
 
 export default function Home() {
-  const [contacts, setContacts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [contactoEditando, setContactoEditando] = useState(null);
-  const [mostrarConfirmModal, setMostrarConfirmModal] = useState(false);
-  const [contactoAEliminar, setContactoAEliminar] = useState(null);
-  const toast = useToast();
+  const [contacts, setContacts] = useState([]); // Estado para almacenar la lista de contactos
+  const [loading, setLoading] = useState(true); // Estado para indicar si se está cargando
+  const [contactoEditando, setContactoEditando] = useState(null); // Estado para almacenar el contacto que se está editando
+  const [mostrarConfirmModal, setMostrarConfirmModal] = useState(false); // Estado para mostrar el modal de confirmación
+  const [contactoAEliminar, setContactoAEliminar] = useState(null); // Estado para almacenar el contacto que se está eliminando
+  const toast = useToast(); // Hook para mostrar notificaciones
 
   // Cargar contactos desde la API
   const fetchContacts = async () => {
     try {
       setLoading(true);
       const response = await axios.get('/api/contacts');
-      setContacts(response.data.contacts || []);
+      setContacts(response.data.contacts || []); // Actualizar la lista de contactos
     } catch (error) {
       toast.error("Error al cargar contactos");
-      setContacts([]);
+      setContacts([]); // Limpiar la lista de contactos
     } finally {
-      setLoading(false);
+      setLoading(false); // Indicar que se ha completado la carga
     }
   };
 
+  // Cargar contactos al montar el componente
   useEffect(() => {
     fetchContacts();
   }, []);
 
+  // Manejar el evento de agregar un nuevo contacto
   const handleContactAdded = (newContact) => {
     // Recargar la lista completa desde la API
     fetchContacts();
   };
 
+  // Manejar el evento de eliminar un contacto
   const abrirModalEliminar = (id) => {
     setContactoAEliminar(id);
     setMostrarConfirmModal(true);
   };
 
+  // Manejar el evento de cerrar el modal de eliminación
   const cerrarModalEliminar = () => {
     setMostrarConfirmModal(false);
     setContactoAEliminar(null);
   };
 
+  // Manejar el evento de confirmar la eliminación
   const confirmarEliminacion = async () => {
     if (contactoAEliminar) {
       try {
@@ -66,6 +71,7 @@ export default function Home() {
     cerrarModalEliminar();
   };
 
+  // Manejar el evento de abrir el modal de edición
   const abrirModalEditar = (contact) => {
     setContactoEditando({
       ...contact,
@@ -73,10 +79,12 @@ export default function Home() {
     });
   };
 
+  // Manejar el evento de cerrar el modal de edición
   const cerrarModal = () => {
     setContactoEditando(null);
   };
 
+  // Manejar el evento de guardar la edición
   const guardarEdicion = async (datosActualizados) => {
     try {
       const { id, ...datos } = datosActualizados;

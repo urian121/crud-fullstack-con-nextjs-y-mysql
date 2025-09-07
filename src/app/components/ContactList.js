@@ -1,6 +1,7 @@
-'use client';
-import EditModal from './EditModal';
+'use client'; // Indicar que este componente es un cliente
+import EditModal from './EditModal'; // Importar el componente EditModal
 
+// Componente para listar los contactos
 export default function ContactList({ contacts, loading, eliminarContacto, abrirModalEditar, contactoEditando, cerrarModal, guardarEdicion }) {
 
    return (

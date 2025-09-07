@@ -1,5 +1,4 @@
-import React from 'react'
-import Image from 'next/image'
+import Image from 'next/image' // Importar el componente Image de Next.js
 
 // Componente para la barra de navegación
 export default function Navbar() {
