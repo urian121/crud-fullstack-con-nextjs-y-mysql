@@ -50,7 +50,7 @@ npm install
 
 #### Crear la base de datos e importar el esquema
 ```bash
-    database_schema.sql
+    app/api/lib/contacts.sql
 ```
 
 ### 4. Ejecutar el Proyecto
