@@ -1,6 +1,6 @@
 # 📋 CRUD Contactos - Next.js & MySQL
 
-Una aplicación web moderna para gestión de contactos desarrollada con Next.js 14, MySQL y Bootstrap 5. Incluye funcionalidades completas de CRUD (Crear, Leer, Actualizar, Eliminar) con carga de imágenes y una interfaz elegante.
+Una aplicación web moderna para gestión de contactos desarrollada con Next.js, MySQL y Bootstrap 5. Incluye funcionalidades completas de CRUD (Crear, Leer, Actualizar, Eliminar) con carga de imágenes y una interfaz elegante.
 
 ![demo](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/refs/heads/master/crud-fullstack-nextjs-mysql.gif)
 
@@ -17,8 +17,8 @@ Una aplicación web moderna para gestión de contactos desarrollada con Next.js 
 ## 🛠️ Tecnologías Utilizadas
 
 ### Frontend
-- **Next.js 14** - Framework React con App Router
-- **React 18** - Biblioteca de interfaz de usuario
+- **Next.js** - Framework React con App Router
+- **React** - Biblioteca de interfaz de usuario
 - **React Hook Form** - Gestión de formularios y validación
 - **Bootstrap 5** - Framework CSS para diseño responsive
 - **Bootstrap Icons** - Iconografía moderna
@@ -59,9 +59,8 @@ crud-con-nextjs-y-mysql/
 ## 🚀 Instalación y Configuración
 
 ### Prerrequisitos
-- Node.js 18+ instalado
-- MySQL Server instalado y ejecutándose
-- Git (opcional)
+- Node.js
+- MySQL
 
 ### 1. Clonar el Repositorio
 ```bash
@@ -127,8 +126,9 @@ npm run lint
 |--------|----------|-------------|
 | GET | `/api/contacts` | Obtener todos los contactos |
 | POST | `/api/contacts` | Crear nuevo contacto |
-| PUT | `/api/contacts` | Actualizar contacto existente |
-| DELETE | `/api/contacts?id={id}` | Eliminar contacto |
+| GET | `/api/contacts/[id]` | Obtener un contacto por ID |
+| PUT | `/api/contacts/[id]` | Actualizar contacto existente |
+| DELETE | `/api/contacts/[id]` | Eliminar contacto |
 
 
 ## 🙌 Cómo puedes apoyar 📢:
