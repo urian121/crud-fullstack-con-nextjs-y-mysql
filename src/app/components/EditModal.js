@@ -2,6 +2,7 @@
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 
+// Componente para editar un contacto
 export default function EditModal({ contactoEditando, cerrarModal, guardarEdicion }) {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [mostrar, setMostrar] = useState(false);

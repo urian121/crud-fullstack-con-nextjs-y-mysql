@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import useToast from '@/app/hooks/useToast';
 
+// Componente para agregar un nuevo contacto
 export default function ContactForm({ onContactAdded }) {
   const { register, handleSubmit, formState: { errors }, watch, reset } = useForm({
     defaultValues: {

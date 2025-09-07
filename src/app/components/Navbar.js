@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
+// Componente para la barra de navegación
 export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">

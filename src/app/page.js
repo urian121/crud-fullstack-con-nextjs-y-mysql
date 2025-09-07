@@ -51,15 +51,16 @@ export default function Home() {
   const confirmarEliminacion = async () => {
     if (contactoAEliminar) {
       try {
-        const response = await axios.delete(`/api/contacts?id=${contactoAEliminar}`);
+        const response = await axios.delete(`/api/contacts/${contactoAEliminar}`);
         if (response.data.success) {
-           toast.success("Contacto eliminado exitosamente");
+          toast.success("Contacto eliminado exitosamente");
           fetchContacts();
         } else {
           toast.error('Error al eliminar el contacto: ' + response.data.message);
         }
       } catch (error) {
         console.error('Error al eliminar contacto:', error);
+        toast.error('Error al eliminar el contacto: ' + (error.response?.data?.message || error.message));
       }
     }
     cerrarModalEliminar();
@@ -68,7 +69,7 @@ export default function Home() {
   const abrirModalEditar = (contact) => {
     setContactoEditando({
       ...contact,
-      speaksEnglish: contact.english_level === 'Sí'
+      speaksEnglish: contact.english_level === 'Sí' || contact.english_level === 'Avanzado' || contact.englishLevel === 'Sí' || contact.englishLevel === 'Avanzado'
     });
   };
 
@@ -78,7 +79,8 @@ export default function Home() {
 
   const guardarEdicion = async (datosActualizados) => {
     try {
-      const response = await axios.put('/api/contacts', datosActualizados);
+      const { id, ...datos } = datosActualizados;
+      const response = await axios.put(`/api/contacts/${id}`, datos);
       if (response.data.success) {
         toast.success('¡Contacto actualizado exitosamente!');
         fetchContacts();
@@ -88,6 +90,7 @@ export default function Home() {
       }
     } catch (error) {
       console.error('Error al actualizar contacto:', error);
+      toast.error('Error al actualizar el contacto: ' + (error.response?.data?.message || error.message));
     }
   };
 

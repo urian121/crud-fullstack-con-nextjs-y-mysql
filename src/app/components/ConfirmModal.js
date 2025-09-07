@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 
+// Componente para mostrar un modal de confirmación
 export default function ConfirmModal({ mostrar, titulo, mensaje, onConfirmar, onCancelar }) {
   const [mostrarModal, setMostrarModal] = useState(false);
 
